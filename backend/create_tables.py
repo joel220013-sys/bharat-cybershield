@@ -1,10 +1,9 @@
 from app.db.database import Base, engine
 
-# Import all models here
+# Import all models
 from app.models.user import User
-
-print("Creating database tables...")
+from app.models.qr_scan import QRScan
 
 Base.metadata.create_all(bind=engine)
 
-print("✅ Tables created successfully!")
+print("Tables created successfully!")

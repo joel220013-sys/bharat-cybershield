@@ -1,0 +1,111 @@
+/* ===========================================================
+   Bharat CyberShield Global Styles
+=========================================================== */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #f8f9fa;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ===========================================================
+   Navbar
+=========================================================== */
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  font-size: 1rem;
+}
+
+/* ===========================================================
+   Cards
+=========================================================== */
+
+.card {
+  border-radius: 12px;
+}
+
+.card-header {
+  font-weight: bold;
+}
+
+/* ===========================================================
+   Table
+=========================================================== */
+
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+/* ===========================================================
+   Scanner
+=========================================================== */
+
+#reader {
+  width: 500px;
+  max-width: 100%;
+  margin: 20px auto;
+  border: 2px solid #0d6efd;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+#reader video {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover;
+}
+
+#reader__scan_region {
+  min-height: 320px;
+}
+
+#reader__dashboard {
+  padding: 10px;
+}
+
+#reader img {
+  display: none !important;
+}
+
+/* ===========================================================
+   Modal
+=========================================================== */
+
+.modal-content {
+  border-radius: 12px;
+}
+
+/* ===========================================================
+   Buttons
+=========================================================== */
+
+.btn {
+  border-radius: 8px;
+}
+
+/* ===========================================================
+   Responsive
+=========================================================== */
+
+@media (max-width: 768px) {
+  #reader {
+    width: 100%;
+  }
+
+  .table {
+    font-size: 14px;
+  }
+}

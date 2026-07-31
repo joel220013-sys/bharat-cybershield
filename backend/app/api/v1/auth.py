@@ -1,10 +1,14 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.schemas.user import UserRegister
+from app.schemas.user import UserRegister, UserLogin, Token
 from app.models.user import User
 from app.db.database import SessionLocal
-from app.core.security import hash_password
+from app.core.security import (
+    hash_password,
+    verify_password,
+    create_access_token,
+)
 
 router = APIRouter(
     prefix="/auth",
@@ -47,8 +51,35 @@ def register_user(user: UserRegister, db: Session = Depends(get_db)):
     }
 
 
+@router.post("/login", response_model=Token)
+def login(user: UserLogin, db: Session = Depends(get_db)):
+
+    db_user = db.query(User).filter(User.email == user.email).first()
+
+    if db_user is None:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid email or password"
+        )
+
+    if not verify_password(user.password, db_user.password):
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid email or password"
+        )
+
+    access_token = create_access_token(
+        data={"sub": db_user.email}
+    )
+
+    return {
+        "access_token": access_token,
+        "token_type": "bearer"
+    }
+
+
 @router.get("/")
 def auth_home():
     return {
         "message": "Authentication API Working 🚀"
-    } 
+    }
