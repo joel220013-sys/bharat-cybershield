@@ -1,7 +1,14 @@
+import { useTranslation } from "react-i18next";
+
 function UploadCard({ onFileChange, onScan, loading }) {
+  const { t } = useTranslation();
+
   return (
     <div className="card shadow-lg p-4 mb-4">
-      <h3 className="mb-3">Upload QR Code</h3>
+
+      <h3 className="mb-3">
+        {t("home.upload")}
+      </h3>
 
       <input
         className="form-control mb-3"
@@ -15,8 +22,11 @@ function UploadCard({ onFileChange, onScan, loading }) {
         onClick={onScan}
         disabled={loading}
       >
-        {loading ? "Scanning..." : "Scan QR"}
+        {loading
+          ? t("home.scanning")
+          : t("home.analyze")}
       </button>
+
     </div>
   );
 }

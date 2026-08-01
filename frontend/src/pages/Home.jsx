@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import api from "../services/api";
 
 import UploadCard from "../components/UploadCard";
@@ -6,6 +8,8 @@ import ResultCard from "../components/ResultCard";
 import LiveScanner from "../components/LiveScanner";
 
 function Home() {
+  const { t } = useTranslation();
+
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
@@ -14,9 +18,10 @@ function Home() {
   // ----------------------------------------
   // Upload QR Image
   // ----------------------------------------
+
   const scanQR = async () => {
     if (!file) {
-      alert("Please select a QR image.");
+      alert(t("messages.select_qr"));
       return;
     }
 
@@ -35,10 +40,10 @@ function Home() {
       if (err.response) {
         alert(
           err.response.data.detail ||
-            "Backend returned an error while scanning."
+          t("messages.scan_error")
         );
       } else {
-        alert("Unable to connect to the backend.");
+        alert(t("messages.backend_error"));
       }
     } finally {
       setLoading(false);
@@ -48,8 +53,8 @@ function Home() {
   // ----------------------------------------
   // Live Camera Scan
   // ----------------------------------------
+
   const handleLiveScan = async (decodedText) => {
-    // Close camera immediately
     setShowCamera(false);
 
     try {
@@ -65,7 +70,7 @@ function Home() {
 
       alert(
         err.response?.data?.detail ||
-          "Unable to analyze QR code."
+        t("messages.qr_analysis_error")
       );
     } finally {
       setLoading(false);
@@ -74,16 +79,19 @@ function Home() {
 
   return (
     <div className="container mt-5">
+
       {/* Header */}
 
       <div className="text-center mb-4">
+
         <h1 className="fw-bold text-primary">
-          Bharat CyberShield
+          {t("app_name")}
         </h1>
 
         <p className="text-muted">
-          AI-Powered QR Scam Detection Platform
+          {t("home.subtitle")}
         </p>
+
       </div>
 
       {/* Upload Card */}
@@ -97,6 +105,7 @@ function Home() {
       {/* Camera Button */}
 
       <div className="text-center mt-4">
+
         <button
           className={`btn ${
             showCamera
@@ -109,28 +118,34 @@ function Home() {
           }}
         >
           {showCamera
-            ? "🛑 Stop Camera"
-            : "📷 Live Camera Scanner"}
+            ? `🛑 ${t("buttons.stop_camera")}`
+            : `📷 ${t("buttons.live_camera")}`}
         </button>
+
       </div>
 
       {/* Live Camera */}
 
       {showCamera && (
         <div className="card shadow mt-4">
+
           <div className="card-body">
+
             <h4 className="text-center mb-3">
-              Live QR Scanner
+              {t("home.live_scanner")}
             </h4>
 
             <LiveScanner onScan={handleLiveScan} />
+
           </div>
+
         </div>
       )}
 
       {/* Result */}
 
       {result && <ResultCard result={result} />}
+
     </div>
   );
 }

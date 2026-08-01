@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import api from "../services/api";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
 function History() {
+  const { t } = useTranslation();
+
   const [history, setHistory] = useState([]);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
@@ -15,11 +18,11 @@ function History() {
 
   const loadHistory = async () => {
     try {
-      const res = await api.get("/history");
+      const res = await api.get("/history/all");
       setHistory(res.data);
     } catch (err) {
       console.error(err);
-      alert("Unable to load history.");
+      alert(t("history.load_error"));
     }
   };
 
@@ -35,10 +38,13 @@ function History() {
 
       await loadHistory();
 
-      alert("Scan deleted successfully.");
+      alert(t("history.delete_success"));
     } catch (err) {
       console.error(err);
-      alert(err.response?.data?.detail || "Unable to delete scan.");
+      alert(
+        err.response?.data?.detail ||
+        t("history.delete_error")
+      );
     }
   };
 
@@ -57,12 +63,12 @@ function History() {
 
     const rows = filtered.map((scan) => [
       scan.id,
-      scan.qr_type,
+      scan.type,
       scan.status,
       `${scan.risk_score}%`,
-      scan.decoded_text.length > 40
-        ? scan.decoded_text.substring(0, 40) + "..."
-        : scan.decoded_text,
+      (scan.content || "").length > 40
+        ? scan.content.substring(0, 40) + "..."
+        : scan.content,
       new Date(scan.created_at).toLocaleString(),
     ]);
 
@@ -78,51 +84,68 @@ function History() {
     doc.save("Scan_History.pdf");
   };
 
+
+
   const exportSinglePDF = (scan) => {
     const doc = new jsPDF();
 
-    // Title
     doc.setFontSize(20);
     doc.setTextColor(13, 110, 253);
     doc.text("Bharat CyberShield", 14, 18);
 
     doc.setFontSize(12);
-    doc.setTextColor(100);
-    doc.text("AI-Powered QR Scam Detection Report", 14, 26);
+    doc.setTextColor(90);
+    doc.text("AI-Powered Scan Report", 14, 26);
+
+    const content = scan.content || scan.decoded_text || "";
+
+    const body = [
+      ["Scan ID", scan.id],
+      ["Scan Type", scan.type || "QR"],
+      ["Status", scan.status],
+      ["Risk Score", `${scan.risk_score}%`],
+      ["Content", content],
+      ["Created At", new Date(scan.created_at).toLocaleString()],
+    ];
+
+    // QR-only fields
+    if ((scan.type === "QR" || !scan.type) && scan.upi_id) {
+      body.push(["UPI ID", scan.upi_id]);
+    }
+
+    if ((scan.type === "QR" || !scan.type) && scan.merchant) {
+      body.push(["Merchant", scan.merchant]);
+    }
+
+    if ((scan.type === "QR" || !scan.type) && scan.amount) {
+      body.push(["Amount", scan.amount]);
+    }
 
     autoTable(doc, {
       startY: 35,
       head: [["Field", "Value"]],
-      body: [
-        ["Scan ID", scan.id],
-        ["QR Type", scan.qr_type],
-        ["Status", scan.status],
-        ["Risk Score", `${scan.risk_score}%`],
-        ["Decoded Content", scan.decoded_text],
-        ["UPI ID", scan.upi_id || "-"],
-        ["Merchant", scan.merchant || "-"],
-        ["Amount", scan.amount || "-"],
-        [
-          "Created At",
-          new Date(scan.created_at).toLocaleString(),
-        ],
-      ],
+      body,
     });
 
     let y = doc.lastAutoTable.finalY + 15;
 
     doc.setFontSize(15);
-    doc.setTextColor(0);
     doc.text("AI Analysis", 14, y);
 
     y += 10;
 
-    (scan.reason || []).forEach((item) => {
-      doc.text(`• ${item}`, 18, y);
-      y += 8;
-    });
+    const reasons = scan.reason || scan.reasons || [];
 
-    doc.save(`Scan_Report_${scan.id}.pdf`);
+    if (reasons.length === 0) {
+      doc.text("No AI reasons available.", 18, y);
+    } else {
+      reasons.forEach((reason) => {
+        doc.text(`• ${reason}`, 18, y);
+        y += 8;
+      });
+    }
+
+    doc.save(`${scan.type || "QR"}_Scan_${scan.id}.pdf`);
   };
 
   const badgeColor = (status) => {
@@ -139,13 +162,28 @@ function History() {
   const filtered = history.filter((scan) => {
     const keyword = search.toLowerCase();
 
-    const matchesSearch =
-      (scan.decoded_text || "").toLowerCase().includes(keyword) ||
-      (scan.merchant || "").toLowerCase().includes(keyword) ||
-      (scan.upi_id || "").toLowerCase().includes(keyword);
+    const text =
+      (scan.content ||
+        scan.decoded_text ||
+        "").toLowerCase();
 
-    const matchesFilter =
-      filter === "All" || scan.status === filter;
+    const matchesSearch =
+      text.includes(keyword);
+
+    let matchesFilter = true;
+
+    if (filter === "QR")
+      matchesFilter = scan.type === "QR";
+
+    else if (filter === "SMS")
+      matchesFilter = scan.type === "SMS";
+
+    else if (
+      filter === "Safe" ||
+      filter === "Suspicious" ||
+      filter === "Danger"
+    )
+      matchesFilter = scan.status === filter;
 
     return matchesSearch && matchesFilter;
   });
@@ -159,11 +197,11 @@ function History() {
 
         <div>
           <h2 className="mb-1">
-            Scan History
+            {t("history.title")}
           </h2>
 
           <small className="text-muted">
-            Total Scans: {filtered.length}
+            {t("history.total_scans")}: {filtered.length}
           </small>
         </div>
 
@@ -173,21 +211,21 @@ function History() {
             className="btn btn-outline-primary me-2"
             onClick={loadHistory}
           >
-            🔄 Refresh
+            🔄 {t("history.refresh")}
           </button>
 
           <button
             className="btn btn-success me-2"
             onClick={exportCSV}
           >
-            📥 Export CSV
+            📥 {t("history.export_csv")}
           </button>
 
           <button
             className="btn btn-danger"
             onClick={exportPDF}
           >
-            📄 Export PDF
+            📄 {t("history.export_pdf")}
           </button>
 
         </div>
@@ -202,7 +240,7 @@ function History() {
 
           <input
             className="form-control"
-            placeholder="Search URL / Merchant / UPI"
+            placeholder={t("history.search")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -216,10 +254,17 @@ function History() {
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
           >
-            <option>All</option>
-            <option>Safe</option>
-            <option>Suspicious</option>
-            <option>Danger</option>
+            <option>{t("history.all")}</option>
+
+            <option>{t("history.qr")}</option>
+
+            <option>{t("history.sms")}</option>
+
+            <option>{t("history.safe")}</option>
+
+            <option>{t("history.suspicious")}</option>
+
+            <option>{t("history.danger")}</option>
           </select>
 
         </div>
@@ -235,13 +280,13 @@ function History() {
           <thead className="table-dark">
 
             <tr>
-              <th>ID</th>
-              <th>Type</th>
-              <th>Status</th>
-              <th>Risk</th>
-              <th>Content</th>
-              <th>Date</th>
-              <th>Actions</th>
+              <th>{t("history.id")}</th>
+              <th>{t("history.type")}</th>
+              <th>{t("history.status")}</th>
+              <th>{t("history.risk")}</th>
+              <th>{t("history.content")}</th>
+              <th>{t("history.date")}</th>
+              <th>{t("history.actions")}</th>
             </tr>
 
           </thead>
@@ -255,7 +300,7 @@ function History() {
                   colSpan="7"
                   className="text-center py-4"
                 >
-                  No scan history found.
+                  {t("history.no_history")}
                 </td>
               </tr>
 
@@ -267,7 +312,17 @@ function History() {
 
                   <td>{scan.id}</td>
 
-                  <td>{scan.qr_type}</td>
+                  <td>
+                    {scan.type === "QR" ? (
+                      <span className="badge bg-primary">
+                        📷 QR
+                      </span>
+                    ) : (
+                      <span className="badge bg-info text-dark">
+                        📱 SMS
+                      </span>
+                    )}
+                  </td>
 
                   <td>
                     <span className={`badge ${badgeColor(scan.status)}`}>
@@ -285,7 +340,7 @@ function History() {
                       whiteSpace: "nowrap",
                     }}
                   >
-                    {scan.decoded_text}
+                    {scan.content || scan.decoded_text}
                   </td>
 
                   <td>
@@ -298,14 +353,14 @@ function History() {
                       className="btn btn-primary btn-sm me-2"
                       onClick={() => setSelectedScan(scan)}
                     >
-                      View
+                      {t("history.view")}
                     </button>
 
                     <button
                       className="btn btn-danger btn-sm"
                       onClick={() => deleteScan(scan.id)}
                     >
-                      Delete
+                      {t("history.delete")}
                     </button>
 
                   </td>
@@ -340,7 +395,7 @@ function History() {
               <div className="modal-header">
 
                 <h4 className="modal-title">
-                  Scan Details
+                  {t("history.details")}
                 </h4>
 
                 <button
@@ -362,8 +417,14 @@ function History() {
                     </tr>
 
                     <tr>
-                      <th>QR Type</th>
-                      <td>{selectedScan.qr_type}</td>
+                      <th>{t("history.scan_type")}</th>
+                      <td>
+
+                        {selectedScan.type === "QR"
+                          ? "📷 QR Scan"
+                          : "📱 SMS Scan"}
+
+                      </td>
                     </tr>
 
                     <tr>
@@ -376,33 +437,45 @@ function History() {
                     </tr>
 
                     <tr>
-                      <th>Risk Score</th>
+                      <th>{t("history.risk_score")}</th>
                       <td>{selectedScan.risk_score}%</td>
                     </tr>
 
                     <tr>
-                      <th>Decoded Content</th>
+                      <th>{t("history.content")}</th>
                       <td style={{ wordBreak: "break-word" }}>
-                        {selectedScan.decoded_text}
+                        {selectedScan.content || selectedScan.decoded_text}
                       </td>
                     </tr>
 
-                    {selectedScan.upi_id && (
-                      <tr>
-                        <th>UPI ID</th>
-                        <td>{selectedScan.upi_id}</td>
-                      </tr>
-                    )}
+                    {selectedScan.type === "QR" &&
+selectedScan.upi_id && (
 
-                    {selectedScan.merchant && (
-                      <tr>
-                        <th>Merchant</th>
-                        <td>{selectedScan.merchant}</td>
-                      </tr>
-                    )}
+<tr>
+
+<th>{t("history.upi")}</th>
+
+<td>{selectedScan.upi_id}</td>
+
+</tr>
+
+)}
+
+                    {selectedScan.type === "QR" &&
+selectedScan.merchant && (
+
+<tr>
+
+<th>{t("history.merchant")}</th>
+
+<td>{selectedScan.merchant}</td>
+
+</tr>
+
+)}
 
                     <tr>
-                      <th>Created At</th>
+                      <th>{t("history.created_at")}</th>
                       <td>
                         {new Date(
                           selectedScan.created_at
@@ -415,12 +488,16 @@ function History() {
                 </table>
 
                 <h5 className="mt-4">
-                  AI Analysis
+
+                  🧠 {t("history.analysis")}
+
                 </h5>
 
                 <ul>
 
-                  {(selectedScan.reason || []).map(
+                  {(selectedScan.reason ||
+selectedScan.reasons ||
+[]).map(
                     (reason, index) => (
                       <li key={index}>
                         {reason}
@@ -438,14 +515,14 @@ function History() {
                   className="btn btn-success me-auto"
                   onClick={() => exportSinglePDF(selectedScan)}
                 >
-                  📄 Download PDF
+                  📄 {t("history.download_pdf")}
                 </button>
 
                 <button
                   className="btn btn-secondary"
                   onClick={() => setSelectedScan(null)}
                 >
-                  Close
+                  {t("history.close")}
                 </button>
 
               </div>

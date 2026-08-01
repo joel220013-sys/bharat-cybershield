@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import api from "../services/api";
 
 import {
@@ -24,11 +25,11 @@ ChartJS.register(
 
 function StatCard({ title, value, color }) {
   return (
-    <div className="col-md-3 mb-3">
-      <div className={`card text-white ${color} shadow`}>
+    <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-3">
+      <div className={`card shadow text-white ${color}`}>
         <div className="card-body text-center">
-          <h5>{title}</h5>
-          <h2>{value}</h2>
+          <h6>{title}</h6>
+          <h3>{value}</h3>
         </div>
       </div>
     </div>
@@ -36,6 +37,8 @@ function StatCard({ title, value, color }) {
 }
 
 function Dashboard() {
+  const { t } = useTranslation();
+
   const [stats, setStats] = useState(null);
 
   useEffect(() => {
@@ -54,7 +57,7 @@ function Dashboard() {
   if (!stats) {
     return (
       <div className="container mt-5 text-center">
-        <h3>Loading Dashboard...</h3>
+        <h3>{t("dashboard.loading")}</h3>
       </div>
     );
   }
@@ -77,19 +80,22 @@ function Dashboard() {
     ],
   };
 
-  const qrChart = {
-    labels: ["URL QR", "UPI QR"],
+  const scanChart = {
+    labels: ["QR", "SMS", "Email"],
     datasets: [
       {
-        label: "QR Types",
+        label: "Number of Scans",
         data: [
-          stats.url_qr,
-          stats.upi_qr,
+          stats.qr_scans,
+          stats.sms_scans,
+          stats.email_scans,
         ],
         backgroundColor: [
-          "#0d6efd",
-          "#20c997",
+          "#0d6efd", // Blue
+          "#20c997", // Green
+          "#212529", // Dark (Email)
         ],
+        borderRadius: 8,
       },
     ],
   };
@@ -98,47 +104,94 @@ function Dashboard() {
     <div className="container mt-4">
 
       <h2 className="text-center mb-4">
-        Dashboard
+        {t("dashboard.title")}
       </h2>
+
+      {/* Statistics */}
 
       <div className="row">
 
         <StatCard
-          title="Total Scans"
+          title={t("dashboard.total")}
           value={stats.total_scans}
           color="bg-primary"
         />
 
         <StatCard
-          title="Safe"
+          title={t("dashboard.qr")}
+          value={stats.qr_scans}
+          color="bg-info"
+        />
+
+        <StatCard
+          title={t("dashboard.sms")}
+          value={stats.sms_scans}
+          color="bg-secondary"
+        />
+
+        <StatCard
+          title={t("dashboard.email")}
+          value={stats.email_scans}
+          color="bg-dark"
+        />
+
+        <StatCard
+          title={t("dashboard.safe")}
           value={stats.safe}
           color="bg-success"
         />
 
         <StatCard
-          title="Danger"
+          title={t("dashboard.suspicious")}
+          value={stats.suspicious}
+          color="bg-warning"
+        />
+
+        <StatCard
+          title={t("dashboard.danger")}
           value={stats.danger}
           color="bg-danger"
         />
 
-        <StatCard
-          title="Average Risk"
-          value={`${stats.average_risk}%`}
-          color="bg-warning"
-        />
+      </div>
+
+      {/* Average Risk */}
+
+      <div className="card shadow mt-4">
+
+        <div className="card-body">
+
+          <h4>{t("dashboard.average")}</h4>
+
+          <div className="progress" style={{ height: "30px" }}>
+
+            <div
+              className="progress-bar bg-danger"
+              style={{
+                width: `${stats.average_risk}%`,
+              }}
+            >
+              {stats.average_risk}%
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
 
+      {/* Charts */}
+
       <div className="row mt-4">
 
-        <div className="col-md-6">
+        <div className="col-md-6 mb-3">
 
           <div className="card shadow">
 
             <div className="card-body">
 
               <h4 className="text-center">
-                Scan Status
+                {t("dashboard.scan_status")}
               </h4>
 
               <Doughnut data={statusChart} />
@@ -149,17 +202,17 @@ function Dashboard() {
 
         </div>
 
-        <div className="col-md-6">
+        <div className="col-md-6 mb-3">
 
           <div className="card shadow">
 
             <div className="card-body">
 
               <h4 className="text-center">
-                QR Types
+                {t("dashboard.scan_types")}
               </h4>
 
-              <Bar data={qrChart} />
+              <Bar data={scanChart} />
 
             </div>
 
@@ -169,50 +222,88 @@ function Dashboard() {
 
       </div>
 
+      {/* Recent Activity */}
+
       <div className="card shadow mt-4">
 
         <div className="card-body">
 
-          <h4>Summary</h4>
+          <h4 className="mb-3">
+            {t("dashboard.recent")}
+          </h4>
 
-          <table className="table table-bordered">
+          <table className="table table-striped">
+
+            <thead>
+
+              <tr>
+
+                <th>{t("dashboard.type")}</th>
+
+                <th>{t("dashboard.status")}</th>
+
+                <th>{t("dashboard.risk")}</th>
+
+                <th>{t("dashboard.preview")}</th>
+
+              </tr>
+
+            </thead>
 
             <tbody>
 
-              <tr>
-                <th>Total Scans</th>
-                <td>{stats.total_scans}</td>
-              </tr>
+              {stats.recent_scans.map((scan) => (
 
-              <tr>
-                <th>Safe</th>
-                <td>{stats.safe}</td>
-              </tr>
+                <tr key={`${scan.type}-${scan.id}`}>
 
-              <tr>
-                <th>Suspicious</th>
-                <td>{stats.suspicious}</td>
-              </tr>
+                  <td>
 
-              <tr>
-                <th>Danger</th>
-                <td>{stats.danger}</td>
-              </tr>
+                    {scan.type === "QR"
+                      ? `📷 ${t("dashboard.qr")}`
+                      : scan.type === "SMS"
+                      ? `📱 ${t("dashboard.sms")}`
+                      : `📧 ${t("dashboard.email")}`}
 
-              <tr>
-                <th>URL QR</th>
-                <td>{stats.url_qr}</td>
-              </tr>
+                  </td>
 
-              <tr>
-                <th>UPI QR</th>
-                <td>{stats.upi_qr}</td>
-              </tr>
+                  <td>
 
-              <tr>
-                <th>Average Risk</th>
-                <td>{stats.average_risk}%</td>
-              </tr>
+                    <span
+                      className={`badge bg-${
+                        scan.status === "Safe"
+                          ? "success"
+                          : scan.status === "Suspicious"
+                          ? "warning"
+                          : "danger"
+                      }`}
+                    >
+                      {scan.status}
+                    </span>
+
+                  </td>
+
+                  <td>
+
+                    {scan.risk_score}%
+
+                  </td>
+
+                  <td
+                    style={{
+                      maxWidth: 400,
+                      wordBreak: "break-word",
+                    }}
+                  >
+
+                    {(scan.content || "").length > 80
+                      ? (scan.content || "").substring(0, 80) + "..."
+                      : (scan.content || t("dashboard.no_content"))}
+
+                  </td>
+
+                </tr>
+
+              ))}
 
             </tbody>
 

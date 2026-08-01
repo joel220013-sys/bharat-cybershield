@@ -1,0 +1,259 @@
+{
+  "app_name": "Bharat CyberShield",
+
+  "navbar": {
+    "qr": "QR Scanner",
+    "sms": "SMS Scanner",
+    "email": "Email Scanner",
+    "email_history": "Email History",
+    "history": "History",
+    "dashboard": "Dashboard"
+  },
+
+  "home": {
+    "title": "QR Code Scanner",
+    "subtitle": "AI-Powered QR Scam Detection Platform",
+    "upload": "Upload QR Code",
+    "analyze": "Scan QR",
+    "scanning": "Scanning...",
+    "live_scanner": "Live QR Scanner"
+  },
+
+  "sms": {
+    "title": "SMS Scam Detection",
+    "subtitle": "AI-Powered Real-Time SMS Security Analyzer",
+    "paste": "Paste SMS",
+    "placeholder": "Paste your SMS here...",
+    "upload": "Analyze SMS",
+    "analyzing": "Analyzing...",
+
+    "report": "Security Report",
+    "risk_score": "Risk Score",
+    "status": "Status",
+
+    "detected_urls": "Detected URLs",
+    "no_urls": "No URLs Detected",
+
+    "reasons": "Detection Reasons",
+
+    "validation": "URL Validation",
+    "https": "HTTPS",
+    "secure": "Secure",
+    "not_secure": "Not Secure",
+
+    "shortener": "URL Shortener",
+    "yes": "Yes",
+    "no": "No",
+
+    "ip": "IP Address",
+    "subdomains": "Subdomains",
+
+    "virustotal": "VirusTotal",
+    "malicious": "Malicious",
+    "suspicious": "Suspicious",
+    "harmless": "Harmless",
+
+    "openphish": "OpenPhish",
+    "reason": "Reason"
+  },
+
+  "email": {
+    "title": "Email Security Scanner",
+    "subtitle": "AI Powered Email Phishing Detection",
+
+    "upload": "Upload Email",
+    "supported_files": "Supported Files: PDF, TXT, EML",
+
+    "analyze": "Analyze Email",
+    "scanning": "Scanning...",
+
+    "select_file": "Please select a PDF, TXT or EML file.",
+    "analyze_error": "Unable to analyze email.",
+
+    "report": "Security Report",
+    "confidence": "Confidence",
+    "risk_score": "Risk Score",
+
+    "organization": "Organization",
+    "trust_level": "Trust Level",
+    "domain": "Domain",
+
+    "email_details": "Email Details",
+    "sender": "Sender",
+    "receiver": "Receiver",
+    "subject": "Subject",
+
+    "summary": "AI Summary",
+
+    "security_analysis": "Security Analysis",
+
+    "virustotal": "VirusTotal",
+    "safe_browsing": "Google Safe Browsing",
+    "openphish": "OpenPhish",
+    "domain_reputation": "Domain Reputation",
+
+    "status": "Status",
+    "score": "Score",
+    "created": "Created",
+    "expires": "Expires",
+
+    "detected_urls": "Detected URLs",
+    "phone_numbers": "Phone Numbers",
+    "upi_ids": "UPI IDs",
+    "security_indicators": "AI Security Indicators",
+
+    "no_urls": "No external URLs detected",
+    "no_phones": "No phone numbers detected",
+    "no_upi": "No UPI IDs detected",
+    "no_indicators": "No suspicious indicators detected",
+
+    "footer_title": "Bharat CyberShield AI Report",
+    "footer_text": "This report is generated using OCR, AI-based phishing detection, URL validation, Domain Reputation, Google Safe Browsing, VirusTotal and OpenPhish analysis."
+  },
+
+  "dashboard": {
+    "title": "Bharat CyberShield Dashboard",
+
+    "loading": "Loading Dashboard...",
+
+    "total": "Total",
+    "qr": "QR",
+    "sms": "SMS",
+    "email": "Email",
+
+    "safe": "Safe",
+    "suspicious": "Suspicious",
+    "danger": "Danger",
+
+    "average": "Average Risk Score",
+
+    "scan_status": "Scan Status",
+    "scan_types": "QR vs SMS vs Email",
+
+    "recent": "Recent Activity",
+
+    "type": "Type",
+    "status": "Status",
+    "risk": "Risk Score",
+    "preview": "Preview",
+
+    "no_content": "No Content"
+  },
+
+  "history": {
+    "title": "Scan History",
+
+    "total_scans": "Total Scans",
+
+    "refresh": "Refresh",
+    "export_csv": "Export CSV",
+    "export_pdf": "Export PDF",
+
+    "search": "Search QR or SMS...",
+
+    "all": "All",
+    "qr": "QR",
+    "sms": "SMS",
+
+    "safe": "Safe",
+    "suspicious": "Suspicious",
+    "danger": "Danger",
+
+    "id": "ID",
+    "type": "Type",
+    "status": "Status",
+    "risk": "Risk",
+    "content": "Content",
+    "date": "Date",
+    "actions": "Actions",
+
+    "view": "View",
+    "delete": "Delete",
+
+    "details": "Scan Details",
+    "scan_type": "Scan Type",
+    "risk_score": "Risk Score",
+    "created_at": "Created At",
+    "merchant": "Merchant",
+    "upi": "UPI ID",
+
+    "analysis": "AI Analysis",
+
+    "download_pdf": "Download PDF",
+    "close": "Close",
+
+    "no_history": "No scan history found.",
+    "no_reasons": "No AI reasons available.",
+
+    "load_error": "Unable to load history.",
+    "delete_success": "Scan deleted successfully.",
+    "delete_error": "Unable to delete scan."
+  },
+
+  "messages": {
+    "select_qr": "Please select a QR image.",
+    "scan_error": "Backend returned an error while scanning.",
+    "backend_error": "Unable to connect to the backend.",
+    "qr_analysis_error": "Unable to analyze QR code.",
+    "enter_sms": "Please enter an SMS.",
+    "sms_error": "Unable to analyze SMS."
+  },
+
+  "buttons": {
+    "upload": "Upload",
+    "analyze": "Analyze",
+    "delete": "Delete",
+    "view": "View",
+    "download": "Download",
+    "close": "Close",
+    "live_camera": "Live Camera Scanner",
+    "stop_camera": "Stop Camera"
+  },
+  "email_history": {
+    "loading": "Loading Email History...",
+    "title": "Email Scan History",
+    "total": "Total Emails",
+    "total_card": "Total",
+
+    "delete_all": "Delete All",
+
+    "search": "Search sender, subject, domain...",
+
+    "all": "All",
+    "safe": "Safe",
+    "suspicious": "Suspicious",
+    "danger": "Danger",
+
+    "id": "ID",
+    "sender": "Sender",
+    "sender_domain": "Sender Domain",
+    "subject": "Subject",
+    "status": "Status",
+    "risk": "Risk",
+    "risk_score": "Risk Score",
+    "date": "Date",
+    "created_at": "Created At",
+
+    "actions": "Actions",
+
+    "view": "View",
+    "delete": "Delete",
+
+    "details": "Email Scan Details",
+
+    "body": "Body",
+    "reasons": "Reasons",
+    "urls": "URLs",
+
+    "download_pdf": "Download PDF",
+    "close": "Close",
+
+    "none": "None",
+
+    "no_history": "No email history found.",
+
+    "load_error": "Unable to load email history.",
+    "delete_error": "Unable to delete email.",
+    "delete_all_error": "Unable to delete email history."
+  }
+}

@@ -1,55 +1,37 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
 
 import Home from "./pages/Home";
+import SMS from "./pages/SMS";
+import Email from "./pages/Email";
+import EmailHistory from "./pages/EmailHistory";
 import Dashboard from "./pages/Dashboard";
 import History from "./pages/History";
+
+import "./App.css";
 
 function App() {
   return (
     <BrowserRouter>
-
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container">
-
-          <Link className="navbar-brand" to="/">
-            Bharat CyberShield
-          </Link>
-
-          <div className="navbar-nav">
-
-            <Link className="nav-link" to="/">
-              Scanner
-            </Link>
-
-            <Link className="nav-link" to="/dashboard">
-              Dashboard
-            </Link>
-
-            <Link className="nav-link" to="/history">
-              History
-            </Link>
-
-          </div>
-
-        </div>
-      </nav>
+      <Navbar />
 
       <Routes>
-
         <Route path="/" element={<Home />} />
 
-        <Route
-          path="/dashboard"
-          element={<Dashboard />}
-        />
+        <Route path="/sms" element={<SMS />} />
+
+        <Route path="/email" element={<Email />} />
+
+        <Route path="/dashboard" element={<Dashboard />} />
+
+        <Route path="/history" element={<History />} />
 
         <Route
-          path="/history"
-          element={<History />}
+          path="/email-history"
+          element={<EmailHistory />}
         />
-
       </Routes>
-
     </BrowserRouter>
   );
 }
