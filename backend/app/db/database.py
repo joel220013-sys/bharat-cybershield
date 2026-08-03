@@ -4,24 +4,18 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from app.core.config import DATABASE_URL
 
 # ==========================================
-# DEBUG - Print Database URL
-# ==========================================
-print("=" * 60)
-print("DATABASE URL:")
-print(DATABASE_URL)
-print("=" * 60)
-
-# ==========================================
 # Create Engine
 # ==========================================
+
 engine = create_engine(
     DATABASE_URL,
-    echo=True  # Shows SQL queries in terminal
+    pool_pre_ping=True
 )
 
 # ==========================================
 # Session
 # ==========================================
+
 SessionLocal = sessionmaker(
     autocommit=False,
     autoflush=False,
@@ -31,12 +25,13 @@ SessionLocal = sessionmaker(
 # ==========================================
 # Base Model
 # ==========================================
-Base = declarative_base()
 
+Base = declarative_base()
 
 # ==========================================
 # Dependency
 # ==========================================
+
 def get_db():
     db = SessionLocal()
     try:
