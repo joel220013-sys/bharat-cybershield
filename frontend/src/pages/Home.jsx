@@ -78,7 +78,15 @@ function Home() {
   };
 
   return (
-    <div className="container mt-5">
+    <div
+      className="container-fluid py-4"
+      style={{
+        maxWidth: "1450px",
+        margin: "0 auto",
+        paddingLeft: "40px",
+        paddingRight: "40px",
+      }}
+    >
 
       {/* Header */}
 
@@ -95,6 +103,50 @@ function Home() {
       </div>
 
       {/* Upload Card */}
+
+      <div className="row mb-4">
+
+        <div className="col-md-3">
+          <div className="card bg-dark text-light border-success shadow h-100">
+            <div className="card-body">
+              <small className="text-success">TODAY</small>
+              <h2>126</h2>
+              <p className="text-secondary mb-0">QR Scans</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-md-3">
+          <div className="card bg-dark text-light border-success shadow h-100">
+            <div className="card-body">
+              <small className="text-success">SAFE</small>
+              <h2>119</h2>
+              <p className="text-secondary mb-0">Verified</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-md-3">
+          <div className="card bg-dark text-light border-warning shadow h-100">
+            <div className="card-body">
+              <small className="text-warning">SUSPICIOUS</small>
+              <h2>5</h2>
+              <p className="text-secondary mb-0">Need Review</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-md-3">
+          <div className="card bg-dark text-light border-danger shadow h-100">
+            <div className="card-body">
+              <small className="text-danger">BLOCKED</small>
+              <h2>2</h2>
+              <p className="text-secondary mb-0">Threats</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
 
       <UploadCard
         loading={loading}

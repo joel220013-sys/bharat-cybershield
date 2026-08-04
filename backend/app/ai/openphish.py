@@ -5,7 +5,7 @@ OPENPHISH_FEED = "https://openphish.com/feed.txt"
 
 def check_openphish(url: str):
     """
-    Check whether a URL appears in the OpenPhish feed.
+    Check whether a URL exists in the OpenPhish free phishing feed.
 
     Returns:
     {
@@ -16,45 +16,58 @@ def check_openphish(url: str):
     """
 
     try:
+        headers = {
+            "User-Agent": "BharatCyberShield/1.0"
+        }
+
         response = requests.get(
             OPENPHISH_FEED,
+            headers=headers,
             timeout=20
         )
 
-        if response.status_code != 200:
-            return {
-                "score": 0,
-                "status": "Unavailable",
-                "reason": "Unable to access OpenPhish feed"
-            }
+        response.raise_for_status()
 
-        phishing_urls = response.text.splitlines()
+        phishing_urls = {
+            line.strip()
+            for line in response.text.splitlines()
+            if line.strip()
+        }
 
-        if url.strip() in phishing_urls:
+        scanned_url = url.strip()
+
+        if scanned_url in phishing_urls:
             return {
                 "score": 40,
                 "status": "Phishing",
-                "reason": "URL found in OpenPhish phishing database"
+                "reason": "URL found in OpenPhish phishing feed"
             }
 
         return {
             "score": 0,
             "status": "Safe",
-            "reason": "URL not found in OpenPhish database"
+            "reason": "URL not found in OpenPhish feed"
         }
 
     except requests.exceptions.Timeout:
         return {
             "score": 0,
             "status": "Error",
-            "reason": "OpenPhish request timed out"
+            "reason": "Connection to OpenPhish timed out"
+        }
+
+    except requests.exceptions.HTTPError as e:
+        return {
+            "score": 0,
+            "status": "Error",
+            "reason": f"HTTP Error: {e}"
         }
 
     except requests.exceptions.RequestException as e:
         return {
             "score": 0,
             "status": "Error",
-            "reason": str(e)
+            "reason": f"Request failed: {e}"
         }
 
     except Exception as e:

@@ -157,7 +157,7 @@ function Dashboard() {
 
       {/* Average Risk */}
 
-      <div className="card shadow mt-4">
+      <div className="card neon-border shadow mt-4">
 
         <div className="card-body">
 
@@ -186,7 +186,7 @@ function Dashboard() {
 
         <div className="col-md-6 mb-3">
 
-          <div className="card shadow">
+          <div className="card neon-border shadow">
 
             <div className="card-body">
 
@@ -204,7 +204,7 @@ function Dashboard() {
 
         <div className="col-md-6 mb-3">
 
-          <div className="card shadow">
+          <div className="card neon-border shadow">
 
             <div className="card-body">
 
@@ -224,7 +224,7 @@ function Dashboard() {
 
       {/* Recent Activity */}
 
-      <div className="card shadow mt-4">
+      <div className="card neon-border shadow mt-4">
 
         <div className="card-body">
 

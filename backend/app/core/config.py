@@ -56,13 +56,11 @@ VIRUSTOTAL_API_KEY = os.getenv(
 )
 
 # ==================================================
-# OpenPhish API (Optional)
+# OpenPhish Configuration
+# Free Feed (No API Key Required)
 # ==================================================
 
-OPENPHISH_API_KEY = os.getenv(
-    "OPENPHISH_API_KEY",
-    ""
-)
+OPENPHISH_FEED = "https://openphish.com/feed.txt"
 
 # ==================================================
 # Debug Configuration
@@ -77,6 +75,7 @@ if DEBUG:
     print("=" * 60)
     print(" Bharat CyberShield Configuration")
     print("=" * 60)
+
     print(f"DATABASE      : {DATABASE_URL}")
 
     print(
@@ -90,8 +89,7 @@ if DEBUG:
     )
 
     print(
-        "OPENPHISH API :",
-        "Loaded" if OPENPHISH_API_KEY else "Not Found"
+        "OPENPHISH     : Free Feed Enabled"
     )
 
     print("=" * 60)

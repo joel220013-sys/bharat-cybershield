@@ -1,0 +1,74 @@
+/* Cyber component-only UI styles */
+
+/* Neon Border */
+.neon-border {
+  border: 1px solid #00ff66;
+  box-shadow: 0 0 10px rgba(0, 255, 120, .2);
+}
+
+/* Fade Animation */
+.fadeUp {
+  animation: fadeUp .8s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse */
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 5px #00ff66;
+  }
+  50% {
+    box-shadow: 0 0 18px #00ff66, 0 0 35px #00ff66;
+  }
+  100% {
+    box-shadow: 0 0 5px #00ff66;
+  }
+}
+
+/* Scan animation utility */
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #00ff66;
+  box-shadow: 0 0 15px #00ff66;
+  animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* Floating utility */
+.float {
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
