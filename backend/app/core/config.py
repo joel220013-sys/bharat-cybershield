@@ -1,28 +1,28 @@
 import os
 from dotenv import load_dotenv
 
-# --------------------------------------------------
+# ==================================================
 # Load Environment Variables
-# --------------------------------------------------
+# ==================================================
 
 load_dotenv()
 
-# --------------------------------------------------
-# Database
-# --------------------------------------------------
+# ==================================================
+# Database Configuration
+# ==================================================
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql+psycopg2://postgres:password@localhost:5432/bharat_cybershield"
+    "postgresql+psycopg2://postgres:joel123@localhost:5432/bharat_cybershield"
 )
 
-# --------------------------------------------------
+# ==================================================
 # JWT Configuration
-# --------------------------------------------------
+# ==================================================
 
 SECRET_KEY = os.getenv(
     "SECRET_KEY",
-    "your-secret-key"
+    "bharat-cybershield-secret-2025"
 )
 
 ALGORITHM = os.getenv(
@@ -31,49 +31,67 @@ ALGORITHM = os.getenv(
 )
 
 ACCESS_TOKEN_EXPIRE_MINUTES = int(
-    os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 60)
+    os.getenv(
+        "ACCESS_TOKEN_EXPIRE_MINUTES",
+        60
+    )
 )
 
-# --------------------------------------------------
-# Google Safe Browsing
-# --------------------------------------------------
+# ==================================================
+# Google Safe Browsing API
+# ==================================================
 
 GOOGLE_SAFE_BROWSING_API_KEY = os.getenv(
     "GOOGLE_SAFE_BROWSING_API_KEY",
     ""
 )
 
-# --------------------------------------------------
-# VirusTotal
-# --------------------------------------------------
+# ==================================================
+# VirusTotal API
+# ==================================================
 
 VIRUSTOTAL_API_KEY = os.getenv(
     "VIRUSTOTAL_API_KEY",
     ""
 )
 
-# --------------------------------------------------
-# Debug (Optional)
-# --------------------------------------------------
+# ==================================================
+# OpenPhish API (Optional)
+# ==================================================
 
-print("=" * 60)
-print("CONFIG LOADED")
-print("DATABASE_URL:", DATABASE_URL)
+OPENPHISH_API_KEY = os.getenv(
+    "OPENPHISH_API_KEY",
+    ""
+)
 
-if GOOGLE_SAFE_BROWSING_API_KEY:
+# ==================================================
+# Debug Configuration
+# ==================================================
+
+DEBUG = os.getenv(
+    "DEBUG",
+    "True"
+).lower() == "true"
+
+if DEBUG:
+    print("=" * 60)
+    print(" Bharat CyberShield Configuration")
+    print("=" * 60)
+    print(f"DATABASE      : {DATABASE_URL}")
+
     print(
-        "SAFE BROWSING KEY:",
-        GOOGLE_SAFE_BROWSING_API_KEY[:10] + "..."
+        "GOOGLE API    :",
+        "Loaded" if GOOGLE_SAFE_BROWSING_API_KEY else "Not Found"
     )
-else:
-    print("SAFE BROWSING KEY: NOT FOUND")
 
-if VIRUSTOTAL_API_KEY:
     print(
-        "VIRUSTOTAL KEY:",
-        VIRUSTOTAL_API_KEY[:10] + "..."
+        "VIRUSTOTAL API:",
+        "Loaded" if VIRUSTOTAL_API_KEY else "Not Found"
     )
-else:
-    print("VIRUSTOTAL KEY: NOT FOUND")
 
-print("=" * 60)
+    print(
+        "OPENPHISH API :",
+        "Loaded" if OPENPHISH_API_KEY else "Not Found"
+    )
+
+    print("=" * 60)
