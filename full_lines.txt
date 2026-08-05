@@ -1,0 +1,2 @@
+Line 218: '            ? `🛑 ${t("buttons.stop_camera")}`\n'
+Line 219: '            : `📷'

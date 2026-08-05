@@ -6,6 +6,7 @@ import api from "../services/api";
 import UploadCard from "../components/UploadCard";
 import ResultCard from "../components/ResultCard";
 import LiveScanner from "../components/LiveScanner";
+import PageHeader from "../components/PageHeader";
 
 function Home() {
   const { t } = useTranslation();
@@ -88,19 +89,10 @@ function Home() {
       }}
     >
 
-      {/* Header */}
-
-      <div className="text-center mb-4">
-
-        <h1 className="fw-bold text-primary">
-          {t("app_name")}
-        </h1>
-
-        <p className="text-muted">
-          {t("home.subtitle")}
-        </p>
-
-      </div>
+      <PageHeader
+        title={t("app_name")}
+        subtitle={t("home.subtitle")}
+      />
 
       {/* Upload Card */}
 
@@ -109,9 +101,9 @@ function Home() {
         <div className="col-md-3">
           <div className="card bg-dark text-light border-success shadow h-100">
             <div className="card-body">
-              <small className="text-success">TODAY</small>
+              <small className="text-success">{t("home.today")}</small>
               <h2>126</h2>
-              <p className="text-secondary mb-0">QR Scans</p>
+              <p className="text-secondary mb-0">{t("home.qr_scans")}</p>
             </div>
           </div>
         </div>
@@ -119,9 +111,9 @@ function Home() {
         <div className="col-md-3">
           <div className="card bg-dark text-light border-success shadow h-100">
             <div className="card-body">
-              <small className="text-success">SAFE</small>
+              <small className="text-success">{t("home.safe")}</small>
               <h2>119</h2>
-              <p className="text-secondary mb-0">Verified</p>
+              <p className="text-secondary mb-0">{t("home.verified")}</p>
             </div>
           </div>
         </div>
@@ -129,9 +121,9 @@ function Home() {
         <div className="col-md-3">
           <div className="card bg-dark text-light border-warning shadow h-100">
             <div className="card-body">
-              <small className="text-warning">SUSPICIOUS</small>
+              <small className="text-warning">{t("home.suspicious")}</small>
               <h2>5</h2>
-              <p className="text-secondary mb-0">Need Review</p>
+              <p className="text-secondary mb-0">{t("home.need_review")}</p>
             </div>
           </div>
         </div>
@@ -139,9 +131,9 @@ function Home() {
         <div className="col-md-3">
           <div className="card bg-dark text-light border-danger shadow h-100">
             <div className="card-body">
-              <small className="text-danger">BLOCKED</small>
+              <small className="text-danger">{t("home.blocked")}</small>
               <h2>2</h2>
-              <p className="text-secondary mb-0">Threats</p>
+              <p className="text-secondary mb-0">{t("home.threats")}</p>
             </div>
           </div>
         </div>

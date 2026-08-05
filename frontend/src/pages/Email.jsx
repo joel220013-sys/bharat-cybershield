@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import api from "../services/api";
+import PageHeader from "../components/PageHeader";
 
 function Email() {
 
@@ -131,23 +132,10 @@ return (
 
 <div className="container py-5">
 
-    {/* Header */}
-
-    <div className="text-center mb-5">
-
-        <h1 className="display-5 fw-bold text-primary">
-
-            🛡 {t("email.title")}
-
-        </h1>
-
-        <p className="text-muted">
-
-            {t("email.subtitle")}
-
-        </p>
-
-    </div>
+    <PageHeader
+      title="Email Security Scanner"
+      subtitle="AI-Powered Email Phishing Detection"
+    />
 
     {/* Upload Card */}
 

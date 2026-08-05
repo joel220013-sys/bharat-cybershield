@@ -1,0 +1,2 @@
+Line 218 (len=46): ends with newline=True
+Line 219 (len=16): ends with newline=False

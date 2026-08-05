@@ -29,7 +29,7 @@ function UploadCard({ onFileChange, onScan, loading }) {
                   fontWeight: 600,
                 }}
               >
-                THREAT INTELLIGENCE
+                {t("home.threat_intelligence")}
               </small>
 
               <h1
@@ -38,7 +38,7 @@ function UploadCard({ onFileChange, onScan, loading }) {
                   fontSize: "40px",
                 }}
               >
-                QR Scanner
+                {t("home.title")}
               </h1>
 
               <p
@@ -47,7 +47,7 @@ function UploadCard({ onFileChange, onScan, loading }) {
                   fontSize: "18px",
                 }}
               >
-                Monitor, analyze and protect your digital perimeter.
+                {t("home.description")}
               </p>
 
             </div>
@@ -59,7 +59,7 @@ function UploadCard({ onFileChange, onScan, loading }) {
                 fontWeight: "600",
               }}
             >
-              ● LIVE MONITORING
+              ● {t("home.live_monitoring")}
             </button>
 
           </div>
@@ -100,7 +100,7 @@ function UploadCard({ onFileChange, onScan, loading }) {
                     fontSize: "34px",
                   }}
                 >
-                  Drop a QR image here
+                  {t("home.drop_qr")}
                 </h2>
 
                 <p
@@ -109,7 +109,7 @@ function UploadCard({ onFileChange, onScan, loading }) {
                     fontSize: "18px",
                   }}
                 >
-                  or choose an image from your device
+                  {t("home.choose_image")}
                 </p>
 
                 <input
@@ -149,34 +149,34 @@ function UploadCard({ onFileChange, onScan, loading }) {
                     color: "#39ff14",
                   }}
                 >
-                  Scanner Status
+                  {t("home.scanner_status")}
                 </h2>
 
                 <div className="d-flex justify-content-between text-white mb-3">
-                  <span>🟢 AI Engine</span>
+                  <span>🟢 {t("home.ai_engine")}</span>
                   <strong style={{ color: "#39ff14" }}>
-                    Online
+                    {t("home.online")}
                   </strong>
                 </div>
 
                 <div className="d-flex justify-content-between text-white mb-3">
-                  <span>🟢 QR Detector</span>
+                  <span>🟢 {t("home.qr_detector")}</span>
                   <strong style={{ color: "#39ff14" }}>
-                    Ready
+                    {t("home.ready")}
                   </strong>
                 </div>
 
                 <div className="d-flex justify-content-between text-white mb-3">
-                  <span>🟢 OCR Engine</span>
+                  <span>🟢 {t("home.ocr_engine")}</span>
                   <strong style={{ color: "#39ff14" }}>
-                    Active
+                    {t("home.active")}
                   </strong>
                 </div>
 
                 <div className="d-flex justify-content-between text-white">
-                  <span>🟢 VirusTotal</span>
+                  <span>🟢 {t("home.virustotal")}</span>
                   <strong style={{ color: "#39ff14" }}>
-                    Connected
+                    {t("home.connected")}
                   </strong>
                 </div>
 
@@ -204,7 +204,7 @@ function UploadCard({ onFileChange, onScan, loading }) {
             >
               {loading
                 ? t("home.scanning")
-                : "Analyze QR Code"}
+                : t("home.analyze_qr")}
             </button>
 
           </div>

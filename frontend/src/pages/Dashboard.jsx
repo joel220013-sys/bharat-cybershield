@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import api from "../services/api";
+import PageHeader from "../components/PageHeader";
 
 import {
   Chart as ChartJS,
@@ -103,9 +104,10 @@ function Dashboard() {
   return (
     <div className="container mt-4">
 
-      <h2 className="text-center mb-4">
-        {t("dashboard.title")}
-      </h2>
+      <PageHeader
+        title="Security Dashboard"
+        subtitle="Real-Time AI Cyber Threat Intelligence"
+      />
 
       {/* Statistics */}
 

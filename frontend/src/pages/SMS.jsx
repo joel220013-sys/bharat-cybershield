@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import api from "../services/api";
+import PageHeader from "../components/PageHeader";
 
 function SMS() {
   const { t } = useTranslation();
@@ -56,19 +57,10 @@ function SMS() {
   return (
     <div className="container mt-5">
 
-      {/* Header */}
-
-      <div className="text-center mb-4">
-
-        <h1 className="fw-bold text-primary">
-          📱 {t("sms.title")}
-        </h1>
-
-        <p className="text-muted">
-          {t("sms.subtitle")}
-        </p>
-
-      </div>
+      <PageHeader
+        title="SMS Scam Detection"
+        subtitle="AI-Powered Real-Time SMS Security Analyzer"
+      />
 
       {/* SMS Input */}
 

@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import api from "../services/api";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import PageHeader from "../components/PageHeader";
 
 function History() {
   const { t } = useTranslation();
@@ -191,21 +192,12 @@ function History() {
   return (
     <div className="container mt-4">
 
-      {/* Header */}
+      <PageHeader
+        title="Scan History"
+        subtitle="View and manage all previous security scans"
+      />
 
-      <div className="d-flex justify-content-between align-items-center mb-4">
-
-        <div>
-          <h2 className="mb-1">
-            {t("history.title")}
-          </h2>
-
-          <small className="text-muted">
-            {t("history.total_scans")}: {filtered.length}
-          </small>
-        </div>
-
-        <div>
+      <div className="d-flex justify-content-end gap-2 mb-3">
 
           <button
             className="btn btn-outline-primary me-2"
@@ -229,8 +221,6 @@ function History() {
           </button>
 
         </div>
-
-      </div>
 
       {/* Search */}
 

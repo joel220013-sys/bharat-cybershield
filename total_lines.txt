@@ -1,0 +1,5 @@
+Total lines: 219
+Last 5 lines:
+Line 215: '          }}\n'
+Line 216: '        >\n'
+Line 217: '          {showCamera\n'

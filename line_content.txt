@@ -1,0 +1,3 @@
+Found at line 219
+Exact repr: '            : `📷'
+Actual text:             : `📷
