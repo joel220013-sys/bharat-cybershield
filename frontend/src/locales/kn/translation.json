@@ -55,11 +55,49 @@
 
   "sms": {
     "title": "SMS ವಂಚನೆ ಪತ್ತೆ",
+    "message_security": "ಸಂದೇಶ ಭದ್ರತೆ",
     "subtitle": "AI ಆಧಾರಿತ SMS ಭದ್ರತಾ ವಿಶ್ಲೇಷಕ",
     "paste": "SMS ಅಂಟಿಸಿ",
     "placeholder": "ನಿಮ್ಮ SMS ಅನ್ನು ಇಲ್ಲಿ ಅಂಟಿಸಿ...",
     "upload": "SMS ವಿಶ್ಲೇಷಿಸಿ",
-    "analyzing": "ವಿಶ್ಲೇಷಿಸಲಾಗುತ್ತಿದೆ..."
+    "analyzing": "ವಿಶ್ಲೇಷಿಸಲಾಗುತ್ತಿದೆ...",
+    "description": "ನಿಮ್ಮ ಡಿಜಿಟಲ್ ಪರಿಸರವನ್ನು ಮೇಲ್ವಿಚಾರಣೆ ಮಾಡಿ, ವಿಶ್ಲೇಷಿಸಿ ಮತ್ತು ರಕ್ಷಿಸಿ.",
+    "analyze_message": "ಸಂದೇಶವನ್ನು ವಿಶ್ಲೇಷಿಸಿ",
+    "coverage": "ಪತ್ತೆ ವ್ಯಾಪ್ತಿ",
+    "live_monitoring": "ಲೈವ್ ಮೇಲ್ವಿಚಾರಣೆ",
+    "ai_accuracy": "AI ನಿಖರತೆ",
+    "messages_analyzed": "ವಿಶ್ಲೇಷಿಸಲಾದ ಸಂದೇಶಗಳು",
+    "threats_blocked": "ತಡೆಗಟ್ಟಲಾದ ಬೆದರಿಕೆಗಳು",
+    "average_response": "ಸರಾಸರಿ ಪ್ರತಿಕ್ರಿಯೆ",
+
+    "report": "ಭದ್ರತಾ ವರದಿ",
+    "risk_score": "ಅಪಾಯದ ಅಂಕ",
+    "status": "ಸ್ಥಿತಿ",
+
+    "detected_urls": "ಪತ್ತೆಯಾದ URL ಗಳು",
+    "no_urls": "ಯಾವುದೇ URL ಪತ್ತೆಯಾಗಿಲ್ಲ",
+
+    "reasons": "ಪತ್ತೆಯಾದ ಕಾರಣಗಳು",
+
+    "validation": "URL ಪರಿಶೀಲನೆ",
+    "https": "HTTPS",
+    "secure": "ಸುರಕ್ಷಿತ",
+    "not_secure": "ಸುರಕ್ಷಿತವಲ್ಲ",
+
+    "shortener": "URL ಶಾರ್ಟನರ್",
+    "yes": "ಹೌದು",
+    "no": "ಇಲ್ಲ",
+
+    "ip": "IP ವಿಳಾಸ",
+    "subdomains": "ಉಪಡೊಮೇನ್‌ಗಳು",
+
+    "virustotal": "ವೈರಸ್‌ಟೋಟಲ್",
+    "malicious": "ದುರುದ್ದೇಶಪೂರಿತ",
+    "suspicious": "ಸಂದೇಹಾಸ್ಪದ",
+    "harmless": "ಹಾನಿಕಾರಕವಲ್ಲ",
+
+    "openphish": "ಓಪನ್‌ಫಿಶ್",
+    "reason": "ಕಾರಣ"
   },
 
   "email": {

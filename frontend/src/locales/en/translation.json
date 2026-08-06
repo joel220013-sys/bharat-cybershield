@@ -43,11 +43,20 @@
 
   "sms": {
     "title": "SMS Scam Detection",
+    "message_security": "MESSAGE SECURITY",
     "subtitle": "AI-Powered Real-Time SMS Security Analyzer",
     "paste": "Paste SMS",
     "placeholder": "Paste your SMS here...",
     "upload": "Analyze SMS",
     "analyzing": "Analyzing...",
+    "description": "Monitor, analyze and protect your digital perimeter.",
+    "analyze_message": "Analyze a message",
+    "coverage": "Detection Coverage",
+    "live_monitoring": "LIVE MONITORING",
+    "ai_accuracy": "AI Accuracy",
+    "messages_analyzed": "Messages analyzed",
+    "threats_blocked": "Threats blocked",
+    "average_response": "Average response",
 
     "report": "Security Report",
     "risk_score": "Risk Score",

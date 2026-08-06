@@ -32,11 +32,49 @@
 
   "sms": {
     "title": "SMS തട്ടിപ്പ് കണ്ടെത്തൽ",
+    "message_security": "സന്ദേശ സുരക്ഷ",
     "subtitle": "AI അടിസ്ഥാനമാക്കിയുള്ള SMS സുരക്ഷാ വിശകലനം",
     "paste": "SMS ഒട്ടിക്കുക",
     "placeholder": "നിങ്ങളുടെ SMS ഇവിടെ ഒട്ടിക്കുക...",
     "upload": "SMS വിശകലനം ചെയ്യുക",
-    "analyzing": "വിശകലനം ചെയ്യുന്നു..."
+    "analyzing": "വിശകലനം ചെയ്യുന്നു...",
+    "description": "നിങ്ങളുടെ ഡിജിറ്റൽ പരിസരം നിരീക്ഷിക്കുകയും വിശകലനം ചെയ്യുകയും സംരക്ഷിക്കുകയും ചെയ്യുക.",
+    "analyze_message": "ഒരു സന്ദേശം വിശകലനം ചെയ്യുക",
+    "coverage": "കണ്ടെത്തൽ പരിധി",
+    "live_monitoring": "തത്സമയ നിരീക്ഷണം",
+    "ai_accuracy": "AI കൃത്യത",
+    "messages_analyzed": "വിശകലനം ചെയ്ത സന്ദേശങ്ങൾ",
+    "threats_blocked": "തടഞ്ഞ ഭീഷണികൾ",
+    "average_response": "ശരാശരി പ്രതികരണ സമയം",
+
+    "report": "സുരക്ഷാ റിപ്പോർട്ട്",
+    "risk_score": "അപായ സ്കോർ",
+    "status": "നില",
+
+    "detected_urls": "കണ്ടെത്തിയ URL-കൾ",
+    "no_urls": "URL ഒന്നും കണ്ടെത്തിയില്ല",
+
+    "reasons": "കണ്ടെത്തലിന്റെ കാരണങ്ങൾ",
+
+    "validation": "URL പരിശോധന",
+    "https": "HTTPS",
+    "secure": "സുരക്ഷിതം",
+    "not_secure": "സുരക്ഷിതമല്ല",
+
+    "shortener": "URL ഷോർട്ട്നർ",
+    "yes": "അതെ",
+    "no": "ഇല്ല",
+
+    "ip": "IP വിലാസം",
+    "subdomains": "സബ്‌ഡൊമെയ്‌നുകൾ",
+
+    "virustotal": "VirusTotal",
+    "malicious": "ദോഷകരം",
+    "suspicious": "സംശയാസ്പദം",
+    "harmless": "സുരക്ഷിതം",
+
+    "openphish": "OpenPhish",
+    "reason": "കാരണം"
   },
 
   "email": {

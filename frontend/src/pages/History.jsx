@@ -193,8 +193,8 @@ function History() {
     <div className="container mt-4">
 
       <PageHeader
-        title="Scan History"
-        subtitle="View and manage all previous security scans"
+        title={t("app_name")}
+        subtitle={t("history.title")}
       />
 
       <div className="d-flex justify-content-end gap-2 mb-3">

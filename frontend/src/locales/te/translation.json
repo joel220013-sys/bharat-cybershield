@@ -32,11 +32,49 @@
 
   "sms": {
     "title": "SMS మోసం గుర్తింపు",
+    "message_security": "సందేశ భద్రత",
     "subtitle": "AI ఆధారిత SMS భద్రత",
     "paste": "SMS పేస్ట్ చేయండి",
     "placeholder": "మీ SMS ఇక్కడ పేస్ట్ చేయండి...",
     "upload": "SMS విశ్లేషించండి",
-    "analyzing": "విశ్లేషణ జరుగుతోంది..."
+    "analyzing": "విశ్లేషణ జరుగుతోంది...",
+    "description": "మీ డిజిటల్ వాతావరణాన్ని పర్యవేక్షించండి, విశ్లేషించండి మరియు రక్షించండి.",
+    "analyze_message": "ఒక సందేశాన్ని విశ్లేషించండి",
+    "coverage": "గుర్తింపు పరిధి",
+    "live_monitoring": "ప్రత్యక్ష పర్యవేక్షణ",
+    "ai_accuracy": "AI ఖచ్చితత్వం",
+    "messages_analyzed": "విశ్లేషించిన సందేశాలు",
+    "threats_blocked": "నిరోధించిన ముప్పులు",
+    "average_response": "సగటు ప్రతిస్పందన సమయం",
+
+    "report": "భద్రతా నివేదిక",
+    "risk_score": "ప్రమాద స్కోర్",
+    "status": "స్థితి",
+
+    "detected_urls": "గుర్తించిన URLలు",
+    "no_urls": "ఏ URLలు గుర్తించబడలేదు",
+
+    "reasons": "గుర్తింపు కారణాలు",
+
+    "validation": "URL ధృవీకరణ",
+    "https": "HTTPS",
+    "secure": "సురక్షితం",
+    "not_secure": "సురక్షితం కాదు",
+
+    "shortener": "URL షార్ట్‌నర్",
+    "yes": "అవును",
+    "no": "కాదు",
+
+    "ip": "IP చిరునామా",
+    "subdomains": "ఉపడొమైన్‌లు",
+
+    "virustotal": "VirusTotal",
+    "malicious": "హానికరమైనది",
+    "suspicious": "అనుమానాస్పదం",
+    "harmless": "హానికరం కాదు",
+
+    "openphish": "OpenPhish",
+    "reason": "కారణం"
   },
 
   "email": {

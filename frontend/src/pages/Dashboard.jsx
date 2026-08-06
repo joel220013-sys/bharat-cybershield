@@ -105,8 +105,8 @@ function Dashboard() {
     <div className="container mt-4">
 
       <PageHeader
-        title="Security Dashboard"
-        subtitle="Real-Time AI Cyber Threat Intelligence"
+        title="Bharat CyberShield"
+        subtitle="AI-Powered Cyber Threat Intelligence Dashboard"
       />
 
       {/* Statistics */}

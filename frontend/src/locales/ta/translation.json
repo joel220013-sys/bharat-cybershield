@@ -32,11 +32,49 @@
 
   "sms": {
     "title": "SMS மோசடி கண்டறிதல்",
+    "message_security": "செய்தி பாதுகாப்பு",
     "subtitle": "AI அடிப்படையிலான SMS பாதுகாப்பு",
     "paste": "SMS ஒட்டு",
     "placeholder": "உங்கள் SMS-ஐ இங்கே ஒட்டவும்...",
     "upload": "SMS பகுப்பாய்வு",
-    "analyzing": "பகுப்பாய்வு செய்யப்படுகிறது..."
+    "analyzing": "பகுப்பாய்வு செய்யப்படுகிறது...",
+    "description": "உங்கள் டிஜிட்டல் சூழலை கண்காணித்து, பகுப்பாய்வு செய்து, பாதுகாக்கவும்.",
+    "analyze_message": "ஒரு செய்தியை பகுப்பாய்வு செய்யவும்",
+    "coverage": "கண்டறிதல் பரவல்",
+    "live_monitoring": "நேரடி கண்காணிப்பு",
+    "ai_accuracy": "AI துல்லியம்",
+    "messages_analyzed": "பகுப்பாய்வு செய்யப்பட்ட செய்திகள்",
+    "threats_blocked": "தடுக்கப்பட்ட அச்சுறுத்தல்கள்",
+    "average_response": "சராசரி பதில் நேரம்",
+
+    "report": "பாதுகாப்பு அறிக்கை",
+    "risk_score": "ஆபத்து மதிப்பெண்",
+    "status": "நிலை",
+
+    "detected_urls": "கண்டறியப்பட்ட URL-கள்",
+    "no_urls": "URL எதுவும் கண்டறியப்படவில்லை",
+
+    "reasons": "கண்டறிதலுக்கான காரணங்கள்",
+
+    "validation": "URL சரிபார்ப்பு",
+    "https": "HTTPS",
+    "secure": "பாதுகாப்பானது",
+    "not_secure": "பாதுகாப்பற்றது",
+
+    "shortener": "URL சுருக்கி",
+    "yes": "ஆம்",
+    "no": "இல்லை",
+
+    "ip": "IP முகவரி",
+    "subdomains": "துணை டொமைன்கள்",
+
+    "virustotal": "VirusTotal",
+    "malicious": "தீங்கிழைக்கும்",
+    "suspicious": "சந்தேகத்திற்குரியது",
+    "harmless": "பாதுகாப்பானது",
+
+    "openphish": "OpenPhish",
+    "reason": "காரணம்"
   },
 
   "email": {

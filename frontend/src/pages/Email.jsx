@@ -133,8 +133,8 @@ return (
 <div className="container py-5">
 
     <PageHeader
-      title="Email Security Scanner"
-      subtitle="AI-Powered Email Phishing Detection"
+      title={t("app_name")}
+      subtitle={t("email.subtitle")}
     />
 
     {/* Upload Card */}
